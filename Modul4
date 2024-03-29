@@ -75,3 +75,29 @@ int main(){
          cin.ignore(numeric_limits<streamsize>::max(),'\n'
        }else{
         pilihan_benar = true;
+}
+        } while (!pilihan_benar);
+        
+        string maskapai_terpilih = daftar_maskapai[maskapai - 1];
+        cin.ignore();
+        string tujuan_terpilih = get_tujuan(maskapai_terpilih);
+        double harga_tiket_terpilih = get_harga_tiket(maskapai_terpilih, harga_tiket);
+ 
+        int jumlah;
+        cout << "Masukkan jumlah tiket: ";
+        cin >> jumlah;
+        double harga_sebelum_diskon = harga_tiket_terpilih * jumlah;
+        double diskon = 10.0; // Misalnya diskon 10%
+        double diskon_harga = hitung_diskon(harga_sebelum_diskon, diskon);
+        double total_harga = harga_sebelum_diskon - diskon_harga;
+        beli_tiket(tujuan_terpilih, maskapai_terpilih, harga_tiket_terpilih, harga_sebelum_diskon, diskon, jumlah, total_harga);
+ 
+        cout << "Apakah Anda ingin membeli tiket lagi? (Y/T): ";
+        cin >> pilihan;
+        cin.ignore();
+    } while (pilihan == 'Y' || pilihan == 'y');
+ 
+    cout << "Terima kasih telah melakukan pembelian tiket. Selamat jalan!" << endl;
+ 
+    return 0;
+}
