@@ -69,7 +69,7 @@ int main(){
          tampilkan_daftar_maskapai();
          cout<<"Pilihan Anda(1-4): ";
          cin>>maskapai;
-       if (maskapai < 1 || maskapai > 4) {
+      if (maskapai < 1 || maskapai > 4) {
                 cout << "Pilihan tidak valid. Silakan coba lagi." << endl;
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
