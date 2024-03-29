@@ -52,3 +52,56 @@ void tampilkan_info_tiket() {
     cout << "Ini adalah program untuk pembelian tiket pesawat." << endl;
     cout << "Silakan ikuti langkah-langkah yang diberikan." << endl;
 }
+int main() {
+    string nama_pengguna;
+    cout << "Masukkan nama Anda: ";
+    getline(cin, nama_pengguna);
+    sambut_pengguna(nama_pengguna);
+    tampilkan_info_tiket();
+    
+    string daftar_maskapai[4] = {"Garuda Indonesia", "Lion Air", "Batik Air", "Air Asia"};
+    double harga_tiket[4] = {3000000.0, 2500000.0, 2800000.0, 2000000.0};
+ 
+    char pilihan;
+    do {
+        int maskapai;
+        bool pilihan_benar = false;
+        do {
+            cout << "Pilih maskapai Anda:\n";
+            tampilkan_daftar_maskapai();
+            cout << "Pilihan Anda (1-4): ";
+            cin >> maskapai;
+ 
+            if (maskapai < 1 || maskapai > 4) {
+                cout << "Pilihan tidak valid. Silakan coba lagi." << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            } else {
+                pilihan_benar = true;
+            }
+        } while (!pilihan_benar);
+        
+        string maskapai_terpilih = daftar_maskapai[maskapai - 1];
+        cin.ignore();
+        string tujuan_terpilih = get_tujuan(maskapai_terpilih);
+        double harga_tiket_terpilih = get_harga_tiket(maskapai_terpilih, harga_tiket);
+ 
+        int jumlah;
+        cout << "Masukkan jumlah tiket: ";
+        cin >> jumlah;
+        double harga_sebelum_diskon = harga_tiket_terpilih * jumlah;
+        double diskon = 10.0; // Misalnya diskon 10%
+        double diskon_harga = hitung_diskon(harga_sebelum_diskon, diskon);
+        double total_harga = harga_sebelum_diskon - diskon_harga;
+        beli_tiket(tujuan_terpilih, maskapai_terpilih, harga_tiket_terpilih, harga_sebelum_diskon, diskon, jumlah, total_harga);
+ 
+        cout << "Apakah Anda ingin membeli tiket lagi? (Y/T): ";
+        cin >> pilihan;
+        cin.ignore();
+    } while (pilihan == 'Y' || pilihan == 'y');
+ 
+    cout << "Terima kasih telah melakukan pembelian tiket. Selamat jalan!" << endl;
+ 
+    return 0;
+}
+
