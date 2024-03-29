@@ -69,13 +69,13 @@ int main(){
          tampilkan_daftar_maskapai();
          cout<<"Pilihan Anda(1-4): ";
          cin>>maskapai;
-       if(maskapai < 1 || maskapai > 4){
-         cout<<"Pilihan tidak valid. Silakan coba lagi".<<endl;
-         cin.clear();
-         cin.ignore(numeric_limits<streamsize>::max(),'\n'
-       }else{
-        pilihan_benar = true;
-}
+       if (maskapai < 1 || maskapai > 4) {
+                cout << "Pilihan tidak valid. Silakan coba lagi." << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            } else {
+                pilihan_benar = true;
+            }
         } while (!pilihan_benar);
         
         string maskapai_terpilih = daftar_maskapai[maskapai - 1];
